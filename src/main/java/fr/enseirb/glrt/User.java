@@ -5,12 +5,16 @@
  */
 package fr.enseirb.glrt;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+
 /**
  *
  * @author USER
  */
 
-public final class ConnexionForm {
+public final class User {
     private static final String CHAMP_EMAIL  = "email";
     private static final String CHAMP_PASS   = "motdepasse";
 
@@ -25,12 +29,12 @@ public final class ConnexionForm {
         return erreurs;
     }
 
-    public Utilisateur connecterUtilisateur( HttpServletRequest request ) {
+    public void connecterUtilisateur( HttpServletRequest request ) {
         /* Récupération des champs du formulaire */
         String email = getValeurChamp( request, CHAMP_EMAIL );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
 
-        Utilisateur utilisateur = new Utilisateur();
+        //Utilisateur utilisateur = new Utilisateur();
 
         /* Validation du champ email. */
         try {
@@ -38,7 +42,7 @@ public final class ConnexionForm {
         } catch ( Exception e ) {
             setErreur( CHAMP_EMAIL, e.getMessage() );
         }
-        utilisateur.setEmail( email );
+        //utilisateur.setEmail( email );
 
         /* Validation du champ mot de passe. */
         try {
@@ -46,7 +50,7 @@ public final class ConnexionForm {
         } catch ( Exception e ) {
             setErreur( CHAMP_PASS, e.getMessage() );
         }
-        utilisateur.setMotDePasse( motDePasse );
+        //utilisateur.setMotDePasse( motDePasse );
 
         /* Initialisation du résultat global de la validation. */
         if ( erreurs.isEmpty() ) {
@@ -55,7 +59,7 @@ public final class ConnexionForm {
             resultat = "Échec de la connexion.";
         }
 
-        return utilisateur;
+        //return utilisateur;
     }
 
     /**
@@ -99,5 +103,4 @@ public final class ConnexionForm {
             return valeur;
         }
     }
-}
 }
